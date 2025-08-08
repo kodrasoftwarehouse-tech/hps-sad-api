@@ -1,8 +1,8 @@
 package com.hps.vilanova.mapper.endereco;
 
 
-import com.hps.vilanova.controller.request.endereco.EnderecoRequest;
-import com.hps.vilanova.controller.response.endereco.EnderecoResponse;
+import com.hps.vilanova.dto.request.endereco.EnderecoRequest;
+import com.hps.vilanova.dto.response.endereco.EnderecoResponse;
 import com.hps.vilanova.model.Endereco;
 
 

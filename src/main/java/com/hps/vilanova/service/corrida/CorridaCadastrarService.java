@@ -1,8 +1,7 @@
 package com.hps.vilanova.service.corrida;
 
-import com.hps.vilanova.controller.request.corrida.CorridaCadastroRequest;
-import com.hps.vilanova.controller.response.corrida.CorridaCadastroResponse;
-import com.hps.vilanova.controller.response.corrida.CorridaResponse;
+import com.hps.vilanova.dto.request.corrida.CorridaCadastroRequest;
+import com.hps.vilanova.dto.response.corrida.CorridaCadastroResponse;
 import com.hps.vilanova.mapper.corrida.CorridaMapper;
 import com.hps.vilanova.mapper.posicao.PosicaoMapper;
 import com.hps.vilanova.model.*;
@@ -33,9 +32,9 @@ public class CorridaCadastrarService {
     public CorridaCadastroResponse cadastrar(Long visitaId, CorridaCadastroRequest request) {
 
         Usuario usuario = usuarioRepository.findById(request.getUsuarioId())
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Usuario não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Usuario não encontrado"));
         Veiculo veiculo = veiculoRepository.findById(request.getVeiculoId())
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Veiculo não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Veiculo não encontrado"));
 
         if (veiculo.getKmAtual().compareTo(request.getKmInicial()) < 0) {
             veiculo.setKmAtual(request.getKmInicial());
@@ -51,20 +50,20 @@ public class CorridaCadastrarService {
         Posicao posicao = PosicaoMapper.toEntity(request.getPosicaoInicial());
         posicaoRepository.saveAndFlush(posicao);
 
-        Corrida corrida = CorridaMapper.toEntity(request,posicao, usuario, veiculo);
+        Corrida corrida = CorridaMapper.toEntity(request, posicao, usuario, veiculo);
         corrida.setStatusCorrida(StatusCorrida.INICIADA);
 
-        if(request.getTipoCorrida() == TipoCorrida.OUTROS){
+        if (request.getTipoCorrida() == TipoCorrida.OUTROS) {
             corrida.setOutrosDescricao(request.getOutrosDescricao());
         }
 
         corridaRepository.saveAndFlush(corrida);
 
         Visita visita = visitaRepository.findById(visitaId)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"visita não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "visita não encontrada"));
 
         visita.setCorrida(corrida);
-        if(visita.getStatusVisita() == StatusVisita.CONSULTORIA_AGENDADA){
+        if (visita.getStatusVisita() == StatusVisita.CONSULTORIA_AGENDADA) {
             visita.setStatusVisita(StatusVisita.CONSULTORIA_A_CAMINHO);
         } else if (visita.getStatusVisita() == StatusVisita.AGENDADA) {
             visita.setStatusVisita(StatusVisita.A_CAMINHO);

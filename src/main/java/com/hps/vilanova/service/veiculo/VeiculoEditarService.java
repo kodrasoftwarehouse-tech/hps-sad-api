@@ -1,6 +1,6 @@
 package com.hps.vilanova.service.veiculo;
 
-import com.hps.vilanova.controller.request.veiculo.VeiculoEditarRequest;
+import com.hps.vilanova.dto.request.veiculo.VeiculoEditarRequest;
 import com.hps.vilanova.model.Veiculo;
 import com.hps.vilanova.repository.VeiculoRepository;
 import jakarta.transaction.Transactional;
@@ -21,7 +21,7 @@ public class VeiculoEditarService {
     public void editar(Long id, @Valid VeiculoEditarRequest request) {
 
         Veiculo veiculo = veiculoRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Veiculo não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Veiculo não encontrado"));
 
         veiculo.setPlaca(request.getPlaca());
         veiculo.setModelo(request.getModelo());

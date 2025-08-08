@@ -1,6 +1,6 @@
 package com.hps.vilanova.service.visita;
 
-import com.hps.vilanova.controller.response.visita.VisitaResponse;
+import com.hps.vilanova.dto.response.visita.VisitaResponse;
 import com.hps.vilanova.mapper.visita.VisitaMapper;
 import com.hps.vilanova.model.enums.StatusVisita;
 import com.hps.vilanova.repository.VisitaRepository;

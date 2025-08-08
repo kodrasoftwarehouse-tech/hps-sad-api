@@ -1,10 +1,10 @@
 package com.hps.vilanova.controller;
 
-import com.hps.vilanova.controller.request.corrida.CorridaCadastroRequest;
-import com.hps.vilanova.controller.request.corrida.CorridaCancelarRequest;
-import com.hps.vilanova.controller.request.corrida.CorridaFinalizarRequest;
-import com.hps.vilanova.controller.response.corrida.CorridaCadastroResponse;
-import com.hps.vilanova.controller.response.corrida.CorridaResponse;
+import com.hps.vilanova.dto.request.corrida.CorridaCadastroRequest;
+import com.hps.vilanova.dto.request.corrida.CorridaCancelarRequest;
+import com.hps.vilanova.dto.request.corrida.CorridaFinalizarRequest;
+import com.hps.vilanova.dto.response.corrida.CorridaCadastroResponse;
+import com.hps.vilanova.dto.response.corrida.CorridaResponse;
 import com.hps.vilanova.service.corrida.CorridaCadastrarService;
 import com.hps.vilanova.service.corrida.CorridaCancelarService;
 import com.hps.vilanova.service.corrida.CorridaDetalheService;
@@ -25,25 +25,25 @@ public class CorridaController {
     private final CorridaCancelarService corridaCancelarService;
 
     @GetMapping("/{id}")
-    public CorridaResponse detalhe(@PathVariable Long id){
+    public CorridaResponse detalhe(@PathVariable Long id) {
         return corridaDetalheService.detalhe(id);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{id}")
-    public CorridaCadastroResponse cadastrar(@PathVariable Long id,@Valid @RequestBody CorridaCadastroRequest request){
-      return corridaCadastrarService.cadastrar(id,request);
+    public CorridaCadastroResponse cadastrar(@PathVariable Long id, @Valid @RequestBody CorridaCadastroRequest request) {
+        return corridaCadastrarService.cadastrar(id, request);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}/finalizar")
-    public void finalizarCorrida(@PathVariable Long id, @Valid @RequestBody CorridaFinalizarRequest request){
-        corridaFinalizarservice.finalizar(id,request);
+    public void finalizarCorrida(@PathVariable Long id, @Valid @RequestBody CorridaFinalizarRequest request) {
+        corridaFinalizarservice.finalizar(id, request);
     }
 
     @PutMapping("{id}/cancelar")
-    public void cancelar(@PathVariable Long id, @RequestBody CorridaCancelarRequest request){
-        corridaCancelarService.cancelar(id,request);
+    public void cancelar(@PathVariable Long id, @RequestBody CorridaCancelarRequest request) {
+        corridaCancelarService.cancelar(id, request);
     }
 
 }

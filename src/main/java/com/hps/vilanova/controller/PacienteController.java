@@ -1,10 +1,10 @@
 package com.hps.vilanova.controller;
 
-import com.hps.vilanova.controller.request.paciente.PacienteAdicionarRequest;
-import com.hps.vilanova.controller.request.paciente.PacienteEditarRequest;
-import com.hps.vilanova.controller.response.paciente.PacienteAdicionarReponse;
-import com.hps.vilanova.controller.response.paciente.PacienteBuscaNomeResponse;
-import com.hps.vilanova.controller.response.paciente.PacienteDetalheResponse;
+import com.hps.vilanova.dto.request.paciente.PacienteAdicionarRequest;
+import com.hps.vilanova.dto.request.paciente.PacienteEditarRequest;
+import com.hps.vilanova.dto.response.paciente.PacienteAdicionarReponse;
+import com.hps.vilanova.dto.response.paciente.PacienteBuscaNomeResponse;
+import com.hps.vilanova.dto.response.paciente.PacienteDetalheResponse;
 import com.hps.vilanova.service.paciente.PacienteAdicionarService;
 import com.hps.vilanova.service.paciente.PacienteBuscaService;
 import com.hps.vilanova.service.paciente.PacienteDetalheService;
@@ -30,24 +30,24 @@ public class PacienteController {
     public Page<PacienteBuscaNomeResponse> buscaPorNome(
             @RequestParam(required = false) String texto,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size){
-        return pacienteBuscaService.buscar(texto,page,size);
+            @RequestParam(defaultValue = "10") int size) {
+        return pacienteBuscaService.buscar(texto, page, size);
     }
 
 
     @GetMapping("/{id}")
-    public PacienteDetalheResponse detalhe(@PathVariable Long id){
+    public PacienteDetalheResponse detalhe(@PathVariable Long id) {
         return pacienteDetalheService.detalhe(id);
     }
 
     @PostMapping
-    public PacienteAdicionarReponse adicionar(@Valid @RequestBody PacienteAdicionarRequest request){
+    public PacienteAdicionarReponse adicionar(@Valid @RequestBody PacienteAdicionarRequest request) {
         return pacienteAdicionarService.adicionar(request);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}")
-    public void editar( @RequestBody PacienteEditarRequest request, @PathVariable Long id){
+    public void editar(@RequestBody PacienteEditarRequest request, @PathVariable Long id) {
         pacienteEditarService.editar(request, id);
     }
 

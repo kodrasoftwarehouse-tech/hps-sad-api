@@ -1,8 +1,8 @@
 package com.hps.vilanova.controller;
 
-import com.hps.vilanova.controller.request.consultoria.*;
-import com.hps.vilanova.controller.response.consultoria.ConsultoriaResponse;
-import com.hps.vilanova.service.consultoria.*;
+import com.hps.vilanova.dto.request.consultoria.ConsultoriaRequest;
+import com.hps.vilanova.dto.response.consultoria.ConsultoriaResponse;
+import com.hps.vilanova.service.consultoria.ConsultoriaService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -12,83 +12,71 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/consultoria")
 public class ConsultoriaController {
 
-    private final ConsultoriaFechadaPaginadaService consultoriaFechadaPaginadaService;
-    private final ConsultoriaSalaEsperaService consultoriaSalaEsperaService;
-    private final ConsultoriaListaVisitaService consultoriaListaVisitaService;
-    private final ConsultoriaDetalheService consultoriaDetalheService;
-    private final ConsultoriaEditarEquipeService consultoriaEditarEquipeService;
-    private final ConsultoriaMudarStatusSalaEsperaService consultoriaMudarStatusSalaEsperaService;
-    private final ConsultoriaEditarService consultoriaEditarService;
-    private final ConsultoriaAdicionarService consultoriaAdicionarService;
-    private final ConsultoriaBaixaSalaEsperaService consultoriaBaixaSalaEsperaService;
-    private final ConsultoriaSituacoesEspecificasService consultoriaSituacoesEspecificasService;
-    private final ConsultoriaHospitalBaixaService consultoriaHospitalBaixaService;
-    private final ConsultoriaModalidadeVisitaService consultoriaModalidadeVisitaService;
+    private final ConsultoriaService consultoriaService;
 
     @GetMapping("/fechadas")
-    public Page<ConsultoriaResponse> consultoriaFechada(Pageable pageable){
-       return consultoriaFechadaPaginadaService.buscar(pageable);
+    public Page<ConsultoriaResponse> listarConsultoriasBaixadas(Pageable pageable) {
+        return consultoriaService.listarConsultoriasBaixadas(pageable);
     }
 
     @GetMapping("/sala-de-espera/{equipeId}")
-    public List<ConsultoriaResponse> listaSala(@PathVariable Long equipeId){
-        return consultoriaSalaEsperaService.listar(equipeId);
+    public List<ConsultoriaResponse> listarConsultoriasPendentesPrimeiraVisitaPorEquipe(@PathVariable Long equipeId) {
+        return consultoriaService.listarConsultoriasPendentesPrimeiraVisitaPorEquipe(equipeId);
     }
 
     @GetMapping("/aguardando-primeira-vd/{equipeId}")
-    public List<ConsultoriaResponse> listarConsultoria(@PathVariable Long equipeId){
-        return consultoriaListaVisitaService.lista(equipeId);
+    public List<ConsultoriaResponse> listarConsultoriasAtivasPorEquipe(@PathVariable Long equipeId) {
+        return consultoriaService.listarConsultoriasAtivasPorEquipe(equipeId);
     }
 
     @GetMapping("/{id}")
-    public ConsultoriaResponse buscar(@PathVariable Long id){
-        return consultoriaDetalheService.buscar(id);
+    public ConsultoriaResponse buscarConsultoriaPorId(@PathVariable Long id) {
+        return consultoriaService.buscarConsultoriaPorId(id);
     }
 
     @PutMapping("/status/{id}")
-    public void mudarStatus(@Valid @RequestBody ConsultoriaStatusSalaRequest request, @PathVariable Long id){
-        consultoriaMudarStatusSalaEsperaService.mudarStatus(request, id);
+    public void atualizarStatusSala(@Valid @RequestBody ConsultoriaRequest request, @PathVariable Long id) {
+        consultoriaService.atualizarStatusSala(request, id);
     }
 
     @PutMapping("/equipe/{id}")
-    public void mudarEquipe(@Valid @PathVariable Long id, @RequestBody ConsultoriaEditaEquipeRequest request){
-        consultoriaEditarEquipeService.editar(id,request);
+    public void atualizarEquipe(@Valid @PathVariable Long id, @RequestBody ConsultoriaRequest request) {
+        consultoriaService.atualizarEquipe(id, request);
     }
 
     @PutMapping("/{id}")
-    public void editar(@PathVariable Long id, @Valid @RequestBody ConsultoriaEditarRequest request){
-        consultoriaEditarService.editar(id, request);
+    public void atualizarDadosConsultoria(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+        consultoriaService.atualizarDadosConsultoria(id, request);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public void adicionar(@Valid @RequestBody ConsultoriaRequest request){
-        consultoriaAdicionarService.adicionar(request);
+    public void criarConsultoria(@Valid @RequestBody ConsultoriaRequest request) {
+        consultoriaService.criarConsultoria(request);
     }
 
     @PutMapping("/{id}/baixa")
-    public void baixaSalaEspera(@PathVariable Long id, @Valid @RequestBody ConsultoriaBaixaRequest request){
-        consultoriaBaixaSalaEsperaService.baixa(id,request);
+    public void registrarBaixa(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+        consultoriaService.registrarBaixa(id, request);
     }
 
     @PutMapping("/{id}/situacoes-especificas")
-    public void baixaSalaEspera(@PathVariable Long id, @Valid @RequestBody ConsultoriaSituacoesEspecificasRequest request){
-        consultoriaSituacoesEspecificasService.baixa(id,request);
+    public void registrarBaixaComSituacoesEspecificas(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+        consultoriaService.registrarBaixaComSituacoesEspecificas(id, request);
     }
 
     @PutMapping("/{id}/hospital-baixa")
-    public void baixaSalaEspera(@PathVariable Long id, @Valid @RequestBody ConsultoriaHospitalBaixaRequest request){
-        consultoriaHospitalBaixaService.baixa(id,request);
+    public void registrarBaixaHospitalar(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+        consultoriaService.registrarBaixaHospitalar(id, request);
     }
 
     @PutMapping("/{id}/modalidade-visita")
-    public void modalidadeVisita(@PathVariable Long id, @Valid @RequestBody ConsultoriaModalidadeVisitaRequest request){
-        consultoriaModalidadeVisitaService.editar(id,request);
+    public void atualizarModalidadeVisita(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+        consultoriaService.atualizarModalidadeVisita(id, request);
     }
 }

@@ -1,7 +1,6 @@
 package com.hps.vilanova.model;
 
 import jakarta.persistence.Embeddable;
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

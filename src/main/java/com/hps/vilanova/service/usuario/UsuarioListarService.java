@@ -1,6 +1,6 @@
 package com.hps.vilanova.service.usuario;
 
-import com.hps.vilanova.controller.response.usuario.UsuarioResponse;
+import com.hps.vilanova.dto.response.usuario.UsuarioResponse;
 import com.hps.vilanova.mapper.usuario.UsuarioMapper;
 import com.hps.vilanova.model.enums.Roles;
 import com.hps.vilanova.repository.UsuarioRepository;

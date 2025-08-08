@@ -20,7 +20,7 @@ public class VisitaRealizarService {
     public void realizar(Long id) {
 
         Visita visita = visitaRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Visita não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Visita não encontrada"));
 
         visita.setHoraFinal(LocalTime.now());
         visita.setStatusVisita(StatusVisita.REALIZADA);

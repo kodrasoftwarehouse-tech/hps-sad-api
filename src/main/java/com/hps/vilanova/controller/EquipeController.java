@@ -1,7 +1,7 @@
 package com.hps.vilanova.controller;
 
-import com.hps.vilanova.controller.request.equipe.EquipeRequest;
-import com.hps.vilanova.controller.response.equipe.EquipeResponse;
+import com.hps.vilanova.dto.request.equipe.EquipeRequest;
+import com.hps.vilanova.dto.response.equipe.EquipeResponse;
 import com.hps.vilanova.service.equipe.EquipeCadastrarService;
 import com.hps.vilanova.service.equipe.EquipeDeletarService;
 import com.hps.vilanova.service.equipe.EquipeEditarService;
@@ -27,24 +27,24 @@ public class EquipeController {
 
 
     @GetMapping("/listar")
-    public List<EquipeResponse> listar(){
+    public List<EquipeResponse> listar() {
         return equipeListarService.listar();
     }
 
     @PutMapping("/{id}")
-    public void editar(@Valid @RequestBody EquipeRequest request, @PathVariable Long id ){
+    public void editar(@Valid @RequestBody EquipeRequest request, @PathVariable Long id) {
         equipeEditarService.editar(request, id);
     }
 
     @ResponseStatus(CREATED)
     @PostMapping
-    public  void cadastrar(@Valid @RequestBody EquipeRequest request){
+    public void cadastrar(@Valid @RequestBody EquipeRequest request) {
         equipeCadastrarService.cadastrar(request);
     }
 
     @ResponseStatus(OK)
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id){
+    public void deletar(@PathVariable Long id) {
         equipeDeletarService.deletar(id);
     }
 }

@@ -17,7 +17,7 @@ public class EquipeDeletarService {
     public void deletar(Long id) {
 
         Equipe equipe = equipeRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Equipe não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Equipe não encontrada"));
 
         equipeRepository.delete(equipe);
 

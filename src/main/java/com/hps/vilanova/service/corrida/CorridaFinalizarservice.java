@@ -1,7 +1,7 @@
 package com.hps.vilanova.service.corrida;
 
 
-import com.hps.vilanova.controller.request.corrida.CorridaFinalizarRequest;
+import com.hps.vilanova.dto.request.corrida.CorridaFinalizarRequest;
 import com.hps.vilanova.mapper.posicao.PosicaoMapper;
 import com.hps.vilanova.model.Corrida;
 import com.hps.vilanova.model.Posicao;
@@ -35,15 +35,15 @@ public class CorridaFinalizarservice {
     @Transactional
     public void finalizar(Long id, CorridaFinalizarRequest request) {
         Corrida corrida = corridaRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Corrida não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Corrida não encontrada"));
 
         Visita visita = visitaRepository.findByCorridaId(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Visita não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Visita não encontrada"));
 
         Veiculo veiculo = veiculoRepository.findById(corrida.getVeiculo().getId())
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Veiculo não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Veiculo não encontrado"));
 
-        if(visita.getStatusVisita() == StatusVisita.CONSULTORIA_A_CAMINHO){
+        if (visita.getStatusVisita() == StatusVisita.CONSULTORIA_A_CAMINHO) {
             visita.setStatusVisita(StatusVisita.CONSULTORIA_CORRIDA_FINALIZADA);
         } else if (visita.getStatusVisita() == StatusVisita.A_CAMINHO) {
             visita.setStatusVisita(StatusVisita.CORRIDA_FINALIZADA);
