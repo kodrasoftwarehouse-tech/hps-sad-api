@@ -1,7 +1,7 @@
 package com.hps.vilanova.mapper.consultoria;
 
-import com.hps.vilanova.controller.request.consultoria.ConsultoriaRequest;
-import com.hps.vilanova.controller.response.consultoria.ConsultoriaResponse;
+import com.hps.vilanova.dto.request.consultoria.ConsultoriaRequest;
+import com.hps.vilanova.dto.response.consultoria.ConsultoriaResponse;
 import com.hps.vilanova.mapper.usuario.UsuarioMapper;
 import com.hps.vilanova.model.Consultoria;
 import com.hps.vilanova.model.Equipe;

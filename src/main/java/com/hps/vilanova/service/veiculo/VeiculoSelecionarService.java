@@ -18,7 +18,7 @@ public class VeiculoSelecionarService {
     @Transactional
     public void selecionar(Long id) {
         Veiculo veiculo = veiculoRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Veiculo não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Veiculo não encontrado"));
         veiculo.setStatus(true);
         veiculoRepository.save(veiculo);
     }
@@ -26,7 +26,7 @@ public class VeiculoSelecionarService {
     @Transactional
     public void limpar(Long id) {
         Veiculo veiculo = veiculoRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Veiculo não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Veiculo não encontrado"));
         veiculo.setStatus(false);
         veiculoRepository.save(veiculo);
     }

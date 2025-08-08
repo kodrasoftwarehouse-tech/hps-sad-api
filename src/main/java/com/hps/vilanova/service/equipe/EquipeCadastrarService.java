@@ -1,6 +1,6 @@
 package com.hps.vilanova.service.equipe;
 
-import com.hps.vilanova.controller.request.equipe.EquipeRequest;
+import com.hps.vilanova.dto.request.equipe.EquipeRequest;
 import com.hps.vilanova.mapper.equipe.EquipeMapper;
 import com.hps.vilanova.model.Equipe;
 import com.hps.vilanova.repository.EquipeRepository;

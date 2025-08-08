@@ -1,6 +1,6 @@
 package com.hps.vilanova.service.veiculo;
 
-import com.hps.vilanova.controller.request.veiculo.VeiculoRequest;
+import com.hps.vilanova.dto.request.veiculo.VeiculoRequest;
 import com.hps.vilanova.mapper.veiculo.VeiculoMapper;
 import com.hps.vilanova.model.Veiculo;
 import com.hps.vilanova.repository.VeiculoRepository;

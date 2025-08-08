@@ -1,7 +1,7 @@
 package com.hps.vilanova.mapper.equipe;
 
-import com.hps.vilanova.controller.request.equipe.EquipeRequest;
-import com.hps.vilanova.controller.response.equipe.EquipeResponse;
+import com.hps.vilanova.dto.request.equipe.EquipeRequest;
+import com.hps.vilanova.dto.response.equipe.EquipeResponse;
 import com.hps.vilanova.model.Equipe;
 
 public class EquipeMapper {

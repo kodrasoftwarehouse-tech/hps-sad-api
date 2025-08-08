@@ -1,24 +1,22 @@
 package com.hps.vilanova.mapper.corrida;
 
 
-import com.hps.vilanova.controller.request.corrida.CorridaCadastroRequest;
-import com.hps.vilanova.controller.response.corrida.CorridaCadastroResponse;
-import com.hps.vilanova.controller.response.corrida.CorridaResponse;
+import com.hps.vilanova.dto.request.corrida.CorridaCadastroRequest;
+import com.hps.vilanova.dto.response.corrida.CorridaCadastroResponse;
+import com.hps.vilanova.dto.response.corrida.CorridaResponse;
 import com.hps.vilanova.mapper.usuario.UsuarioMapper;
 import com.hps.vilanova.mapper.veiculo.VeiculoMapper;
 import com.hps.vilanova.model.Corrida;
 import com.hps.vilanova.model.Posicao;
 import com.hps.vilanova.model.Usuario;
 import com.hps.vilanova.model.Veiculo;
-import com.hps.vilanova.model.enums.StatusCorrida;
-import jakarta.validation.Valid;
 
 import java.time.LocalTime;
 
 public class CorridaMapper {
 
 
-    public static Corrida toEntity( CorridaCadastroRequest request, Posicao posicao,  Usuario usuario, Veiculo veiculo) {
+    public static Corrida toEntity(CorridaCadastroRequest request, Posicao posicao, Usuario usuario, Veiculo veiculo) {
         return Corrida.builder()
                 .veiculo(veiculo)
                 .usuario(usuario)

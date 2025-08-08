@@ -20,7 +20,7 @@ public class VisitaIniciadaService {
     public void iniciar(Long id) {
 
         Visita visita = visitaRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Visita não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Visita não encontrada"));
 
         visita.setStatusVisita(StatusVisita.INICIADA);
         visita.setHoraInicial(LocalTime.now());

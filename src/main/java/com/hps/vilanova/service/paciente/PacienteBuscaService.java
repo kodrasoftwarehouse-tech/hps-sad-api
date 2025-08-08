@@ -1,6 +1,6 @@
 package com.hps.vilanova.service.paciente;
 
-import com.hps.vilanova.controller.response.paciente.PacienteBuscaNomeResponse;
+import com.hps.vilanova.dto.response.paciente.PacienteBuscaNomeResponse;
 import com.hps.vilanova.repository.PacienteRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

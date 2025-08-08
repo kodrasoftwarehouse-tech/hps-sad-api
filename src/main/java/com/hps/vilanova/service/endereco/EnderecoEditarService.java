@@ -1,6 +1,6 @@
 package com.hps.vilanova.service.endereco;
 
-import com.hps.vilanova.controller.request.endereco.EnderecoRequest;
+import com.hps.vilanova.dto.request.endereco.EnderecoRequest;
 import com.hps.vilanova.model.Endereco;
 import com.hps.vilanova.repository.EnderecoRepository;
 import jakarta.validation.Valid;
@@ -20,7 +20,7 @@ public class EnderecoEditarService {
     public void editar(Long id, @Valid EnderecoRequest request) {
 
         Endereco endereco = enderecoRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Endereço não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Endereço não encontrado"));
 
         endereco.setCep(request.getCep());
         endereco.setLogradouro(request.getLogradouro());
