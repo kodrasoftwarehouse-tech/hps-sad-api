@@ -33,5 +33,4 @@ public class ConsultoriaResponse {
     private boolean statusConsultoria;
     private String situacoesEspecificas;
     private String hospital;
-
 }

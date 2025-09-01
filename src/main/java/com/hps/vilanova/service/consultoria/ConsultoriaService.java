@@ -43,7 +43,7 @@ public class ConsultoriaService {
                 .orElseThrow(() -> new RuntimeException("Equipe não encontrada"));
 
         consultoriaRepository.save(
-                ConsultoriaMapper.toEntity(request, usuario, paciente, equipe)
+                ConsultoriaMapper.fromRequest(request, usuario, paciente, equipe)
         );
     }
 
