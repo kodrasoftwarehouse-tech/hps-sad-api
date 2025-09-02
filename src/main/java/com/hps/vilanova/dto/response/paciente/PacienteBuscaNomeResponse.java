@@ -10,7 +10,6 @@ import lombok.*;
 public class PacienteBuscaNomeResponse {
 
     private Long id;
-
     private String nome;
 
 }
