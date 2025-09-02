@@ -1,8 +1,8 @@
 package com.hps.vilanova.controller;
 
-import com.hps.vilanova.controller.request.relatorio.RelatorioRequest;
-import com.hps.vilanova.controller.request.visita.VisitaAgendarRequest;
-import com.hps.vilanova.controller.response.visita.VisitaResponse;
+import com.hps.vilanova.dto.request.relatorio.RelatorioRequest;
+import com.hps.vilanova.dto.request.visita.VisitaAgendarRequest;
+import com.hps.vilanova.dto.response.visita.VisitaResponse;
 import com.hps.vilanova.service.visita.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -25,42 +25,42 @@ public class VisitaController {
     private final VisitaDeletarService visitaDeletarService;
 
     @GetMapping("/{equipeId}")
-    public List<VisitaResponse> listar(@PathVariable Long equipeId){
+    public List<VisitaResponse> listar(@PathVariable Long equipeId) {
         return visitaListarService.listar(equipeId);
     }
 
     @GetMapping("{corridaId}/detalhe")
-    public VisitaResponse obter(@PathVariable Long corridaId){
+    public VisitaResponse obter(@PathVariable Long corridaId) {
         return visitaDetalheService.obter(corridaId);
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/{id}/agendar")
-    public void agendar(@PathVariable Long id, @Valid @RequestBody VisitaAgendarRequest request){
-        visitaAgendarService.agendar(id,request);
+    public void agendar(@PathVariable Long id, @Valid @RequestBody VisitaAgendarRequest request) {
+        visitaAgendarService.agendar(id, request);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}/iniciar")
-    public void inciar(@PathVariable Long id){
+    public void inciar(@PathVariable Long id) {
         visitaIniciadaService.iniciar(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}/realizada")
-    public void realizar(@PathVariable Long id){
+    public void realizar(@PathVariable Long id) {
         visitaRealizarService.realizar(id);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}/encerrar")
-    public void encerrar(@PathVariable Long id, @Valid @RequestBody RelatorioRequest request){
+    public void encerrar(@PathVariable Long id, @Valid @RequestBody RelatorioRequest request) {
         visitaEncerrarService.encerrar(id, request);
     }
 
     @ResponseStatus(HttpStatus.OK)
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id){
+    public void deletar(@PathVariable Long id) {
         visitaDeletarService.deletar(id);
     }
 

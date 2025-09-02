@@ -1,6 +1,6 @@
 package com.hps.vilanova.service.paciente;
 
-import com.hps.vilanova.controller.response.paciente.PacienteDetalheResponse;
+import com.hps.vilanova.dto.response.paciente.PacienteDetalheResponse;
 import com.hps.vilanova.mapper.paciente.PacienteDetalheMapper;
 import com.hps.vilanova.model.Endereco;
 import com.hps.vilanova.model.Paciente;

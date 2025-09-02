@@ -1,17 +1,15 @@
 package com.hps.vilanova.controller;
 
-import com.hps.vilanova.controller.request.veiculo.VeiculoEditarRequest;
-import com.hps.vilanova.controller.request.veiculo.VeiculoRequest;
-import com.hps.vilanova.controller.response.corrida.CorridaResponse;
-import com.hps.vilanova.controller.response.veiculo.VeiculoResponse;
-import com.hps.vilanova.model.Veiculo;
+import com.hps.vilanova.dto.request.veiculo.VeiculoEditarRequest;
+import com.hps.vilanova.dto.request.veiculo.VeiculoRequest;
+import com.hps.vilanova.dto.response.corrida.CorridaResponse;
+import com.hps.vilanova.dto.response.veiculo.VeiculoResponse;
 import com.hps.vilanova.service.veiculo.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -34,7 +32,7 @@ public class VeiculoController {
     private final VeiculoDeletarService veiculoDeletarService;
 
     @GetMapping("/{id}")
-    public VeiculoResponse detalheVeiculo(@PathVariable Long id){
+    public VeiculoResponse detalheVeiculo(@PathVariable Long id) {
         return veiculoDetalheService.detalhe(id);
     }
 
@@ -49,35 +47,35 @@ public class VeiculoController {
     }
 
     @GetMapping("/lista")
-    public List<VeiculoResponse> lista(){
+    public List<VeiculoResponse> lista() {
         return veiculoListarService.listar();
     }
 
 
     @ResponseStatus(OK)
     @PutMapping("/{id}")
-    public void editar(@PathVariable Long id, @Valid @RequestBody VeiculoEditarRequest request){
+    public void editar(@PathVariable Long id, @Valid @RequestBody VeiculoEditarRequest request) {
         veiculoEditarService.editar(id, request);
     }
 
     @PutMapping("/{id}/selecionar")
-    public void selecionar(@PathVariable Long id){
+    public void selecionar(@PathVariable Long id) {
         veiculoSelecionarService.selecionar(id);
     }
 
     @PutMapping("/{id}/limpar")
-    public void limpar(@PathVariable Long id){
+    public void limpar(@PathVariable Long id) {
         veiculoSelecionarService.limpar(id);
     }
 
     @ResponseStatus(CREATED)
     @PostMapping
-    public void cadastrar(@Valid @RequestBody VeiculoRequest request){
+    public void cadastrar(@Valid @RequestBody VeiculoRequest request) {
         veiculocadastrarService.cadastrar(request);
     }
 
     @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id){
+    public void deletar(@PathVariable Long id) {
         veiculoDeletarService.deletar(id);
     }
 

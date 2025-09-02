@@ -1,14 +1,11 @@
 package com.hps.vilanova.mapper.visita;
 
-import com.hps.vilanova.controller.request.visita.VisitaAgendarRequest;
-import com.hps.vilanova.controller.response.visita.VisitaResponse;
+import com.hps.vilanova.dto.request.visita.VisitaAgendarRequest;
+import com.hps.vilanova.dto.response.visita.VisitaResponse;
 import com.hps.vilanova.model.Equipe;
 import com.hps.vilanova.model.Paciente;
 import com.hps.vilanova.model.Usuario;
 import com.hps.vilanova.model.Visita;
-import com.hps.vilanova.model.enums.StatusVisita;
-
-import java.time.LocalTime;
 
 public class VisitaMapper {
     public static Visita toAgendarVisita(Paciente paciente, Usuario usuario, Equipe equipe, VisitaAgendarRequest request) {
@@ -21,7 +18,7 @@ public class VisitaMapper {
                 .build();
     }
 
-    public static VisitaResponse toVisitaResponse(Visita visita){
+    public static VisitaResponse toVisitaResponse(Visita visita) {
         return VisitaResponse.builder()
                 .id(visita.getId())
                 .paciente(visita.getPaciente())

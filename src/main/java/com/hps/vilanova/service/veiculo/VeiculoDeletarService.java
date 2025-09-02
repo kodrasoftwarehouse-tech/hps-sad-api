@@ -16,7 +16,7 @@ public class VeiculoDeletarService {
 
     public void deletar(Long id) {
         Veiculo veiculo = veiculoRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Veiculo não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Veiculo não encontrado"));
         veiculoRepository.delete(veiculo);
     }
 }

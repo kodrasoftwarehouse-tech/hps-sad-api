@@ -1,14 +1,14 @@
 package com.hps.vilanova.mapper.paciente;
 
-import com.hps.vilanova.controller.request.paciente.PacienteAdicionarRequest;
-import com.hps.vilanova.controller.response.paciente.PacienteAdicionarReponse;
+import com.hps.vilanova.dto.request.paciente.PacienteAdicionarRequest;
+import com.hps.vilanova.dto.response.paciente.PacienteAdicionarReponse;
 import com.hps.vilanova.model.Endereco;
 import com.hps.vilanova.model.Paciente;
 
 
 public class AdicionarPacienteMapper {
     public static Paciente toEntity(PacienteAdicionarRequest request, Endereco endereco) {
-      return  Paciente.builder()
+        return Paciente.builder()
                 .nome(request.getNome())
                 .idade(request.getIdade())
                 .dataNascimento(request.getDataNascimento())

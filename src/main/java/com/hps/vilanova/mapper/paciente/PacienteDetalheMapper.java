@@ -1,7 +1,6 @@
 package com.hps.vilanova.mapper.paciente;
 
-import com.hps.vilanova.controller.response.endereco.EnderecoResponse;
-import com.hps.vilanova.controller.response.paciente.PacienteDetalheResponse;
+import com.hps.vilanova.dto.response.paciente.PacienteDetalheResponse;
 import com.hps.vilanova.mapper.endereco.EnderecoMapper;
 import com.hps.vilanova.model.Endereco;
 import com.hps.vilanova.model.Paciente;
@@ -23,7 +22,6 @@ public class PacienteDetalheMapper {
                 .telefone2(paciente.getTelefone2())
                 .status(paciente.isStatus())
                 .build();
-
 
 
     }

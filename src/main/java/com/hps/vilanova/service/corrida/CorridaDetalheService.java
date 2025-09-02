@@ -1,6 +1,6 @@
 package com.hps.vilanova.service.corrida;
 
-import com.hps.vilanova.controller.response.corrida.CorridaResponse;
+import com.hps.vilanova.dto.response.corrida.CorridaResponse;
 import com.hps.vilanova.mapper.corrida.CorridaMapper;
 import com.hps.vilanova.model.Corrida;
 import com.hps.vilanova.repository.CorridaRepository;
@@ -19,7 +19,7 @@ public class CorridaDetalheService {
     public CorridaResponse detalhe(Long id) {
 
         Corrida corrida = corridaRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Corrida não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Corrida não encontrada"));
 
         return CorridaMapper.toDetalheResponse(corrida);
 
