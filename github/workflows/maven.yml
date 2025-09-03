@@ -24,9 +24,5 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Build and Test with Maven
+      - name: Build and Test
         run: mvn clean verify -B
-
-      # Dependência de segurança opcional
-      # - name: Update dependency graph
-      #   uses: advanced-security/maven-dependency-submission-action@v1
