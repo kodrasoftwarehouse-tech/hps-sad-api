@@ -22,7 +22,7 @@ public class CorridaController {
     private final CorridaDetalheService corridaDetalheService;
     private final CorridaFinalizarservice corridaFinalizarservice;
     private final CorridaCadastrarService corridaCadastrarService;
-    private final CorridaCancelarService corridaCancelarService;
+    private final CorridaCancelarService corridaCancelarService
 
     @GetMapping("/{id}")
     public CorridaResponse detalhe(@PathVariable Long id) {
