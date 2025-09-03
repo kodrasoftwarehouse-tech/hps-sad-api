@@ -1,6 +1,6 @@
 package com.hps.vilanova.service.veiculo;
 
-import com.hps.vilanova.controller.response.veiculo.VeiculoResponse;
+import com.hps.vilanova.dto.response.veiculo.VeiculoResponse;
 import com.hps.vilanova.mapper.veiculo.VeiculoMapper;
 import com.hps.vilanova.repository.VeiculoRepository;
 import lombok.RequiredArgsConstructor;

@@ -1,10 +1,11 @@
 package com.hps.vilanova.service.equipe;
 
-import com.hps.vilanova.controller.response.equipe.EquipeResponse;
+import com.hps.vilanova.dto.response.equipe.EquipeResponse;
 import com.hps.vilanova.mapper.equipe.EquipeMapper;
 import com.hps.vilanova.repository.EquipeRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 

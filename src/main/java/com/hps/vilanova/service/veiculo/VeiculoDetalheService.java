@@ -1,6 +1,6 @@
 package com.hps.vilanova.service.veiculo;
 
-import com.hps.vilanova.controller.response.veiculo.VeiculoResponse;
+import com.hps.vilanova.dto.response.veiculo.VeiculoResponse;
 import com.hps.vilanova.mapper.veiculo.VeiculoMapper;
 import com.hps.vilanova.model.Veiculo;
 import com.hps.vilanova.repository.VeiculoRepository;
@@ -18,7 +18,7 @@ public class VeiculoDetalheService {
 
     public VeiculoResponse detalhe(Long id) {
         Veiculo veiculo = veiculoRepository.findById(id)
-                .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Veiculo não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Veiculo não encontrado"));
         return VeiculoMapper.toResponse(veiculo);
     }
 }

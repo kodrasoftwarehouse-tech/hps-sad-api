@@ -15,8 +15,8 @@ public class VisitaDeletarService {
     private final VisitaRepository visitaRepository;
 
     public void deletar(Long id) {
-       Visita visita =  visitaRepository.findById(id)
-               .orElseThrow(()-> new ResponseStatusException(NOT_FOUND,"Visita não encontrada!"));
-       visitaRepository.delete(visita);
+        Visita visita = visitaRepository.findById(id)
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Visita não encontrada!"));
+        visitaRepository.delete(visita);
     }
 }

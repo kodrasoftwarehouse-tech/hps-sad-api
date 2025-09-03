@@ -1,6 +1,6 @@
 package com.hps.vilanova.mapper.relatorio;
 
-import com.hps.vilanova.controller.request.relatorio.RelatorioRequest;
+import com.hps.vilanova.dto.request.relatorio.RelatorioRequest;
 import com.hps.vilanova.model.Relatorio;
 
 public class RelatorioMapper {
