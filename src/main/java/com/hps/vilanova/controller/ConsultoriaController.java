@@ -20,62 +20,73 @@ public class ConsultoriaController {
     private final ConsultoriaService consultoriaService;
 
     @GetMapping("/fechadas")
+    @ResponseStatus(HttpStatus.OK)
     public Page<ConsultoriaResponse> listarConsultoriasBaixadas(Pageable pageable) {
         return consultoriaService.listarConsultoriasBaixadas(pageable);
     }
 
     @GetMapping("/sala-de-espera/{equipeId}")
+    @ResponseStatus(HttpStatus.OK)
     public List<ConsultoriaResponse> listarConsultoriasPendentesPrimeiraVisitaPorEquipe(@PathVariable Long equipeId) {
         return consultoriaService.listarConsultoriasPendentesPrimeiraVisitaPorEquipe(equipeId);
     }
 
     @GetMapping("/aguardando-primeira-vd/{equipeId}")
+    @ResponseStatus(HttpStatus.OK)
     public List<ConsultoriaResponse> listarConsultoriasAtivasPorEquipe(@PathVariable Long equipeId) {
         return consultoriaService.listarConsultoriasAtivasPorEquipe(equipeId);
     }
 
     @GetMapping("/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public ConsultoriaResponse buscarConsultoriaPorId(@PathVariable Long id) {
         return consultoriaService.buscarConsultoriaPorId(id);
     }
 
     @PutMapping("/status/{id}")
-    public void atualizarStatusSala(@Valid @RequestBody ConsultoriaRequest request, @PathVariable Long id) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizarStatusSala(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
         consultoriaService.atualizarStatusSala(request, id);
     }
 
     @PutMapping("/equipe/{id}")
-    public void atualizarEquipe(@Valid @PathVariable Long id, @RequestBody ConsultoriaRequest request) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void atualizarEquipe(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
         consultoriaService.atualizarEquipe(id, request);
     }
 
     @PutMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizarDadosConsultoria(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
         consultoriaService.atualizarDadosConsultoria(id, request);
     }
 
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping()
     public void criarConsultoria(@Valid @RequestBody ConsultoriaRequest request) {
         consultoriaService.criarConsultoria(request);
     }
 
     @PutMapping("/{id}/baixa")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void registrarBaixa(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
         consultoriaService.registrarBaixa(id, request);
     }
 
     @PutMapping("/{id}/situacoes-especificas")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void registrarBaixaComSituacoesEspecificas(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
         consultoriaService.registrarBaixaComSituacoesEspecificas(id, request);
     }
 
     @PutMapping("/{id}/hospital-baixa")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void registrarBaixaHospitalar(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
         consultoriaService.registrarBaixaHospitalar(id, request);
     }
 
     @PutMapping("/{id}/modalidade-visita")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void atualizarModalidadeVisita(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
         consultoriaService.atualizarModalidadeVisita(id, request);
     }
