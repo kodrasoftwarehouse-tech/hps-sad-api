@@ -14,7 +14,7 @@ import java.time.LocalTime;
 @AllArgsConstructor
 @Getter
 @Setter
-@Entity
+@Entity(name = "consultoria")
 public class Consultoria {
 
     @Id
