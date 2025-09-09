@@ -10,10 +10,11 @@ import org.springframework.data.repository.query.Param;
 
 public interface PacienteRepository extends JpaRepository<Paciente, Long> {
 
-    @Query("SELECT new com.hps.vilanova.controller.response.paciente.PacienteBuscaNomeResponse(p.id, p.nome) " +
+    @Query("SELECT new com.hps.vilanova.dto.response.paciente.PacienteBuscaNomeResponse(p.id, p.nome) " +
             "FROM Paciente p WHERE LOWER(p.nome) LIKE LOWER(CONCAT('%', :texto, '%'))")
     Page<PacienteBuscaNomeResponse> search(@Param("texto") String texto, Pageable pageable);
 
-    @Query("SELECT new com.hps.vilanova.controller.response.paciente.PacienteBuscaNomeResponse(p.id, p.nome) FROM Paciente p")
+    @Query("SELECT new com.hps.vilanova.dto.response.paciente.PacienteBuscaNomeResponse(p.id, p.nome) " +
+            "FROM Paciente p")
     Page<PacienteBuscaNomeResponse> findAllPacientes(Pageable pageable);
 }
