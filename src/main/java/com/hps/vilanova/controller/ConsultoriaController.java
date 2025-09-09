@@ -1,6 +1,7 @@
 package com.hps.vilanova.controller;
 
 import com.hps.vilanova.dto.request.consultoria.ConsultoriaRequest;
+import com.hps.vilanova.dto.request.consultoria.ConsultoriaUpdateRequest;
 import com.hps.vilanova.dto.response.consultoria.ConsultoriaResponse;
 import com.hps.vilanova.service.consultoria.ConsultoriaService;
 import jakarta.validation.Valid;
@@ -50,7 +51,7 @@ public class ConsultoriaController {
     }
 
     @PutMapping("/{id}")
-    public void atualizarDadosConsultoria(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+    public void atualizarDadosConsultoria(@PathVariable Long id, @Valid @RequestBody ConsultoriaUpdateRequest request) {
         consultoriaService.atualizarDadosConsultoria(id, request);
     }
 

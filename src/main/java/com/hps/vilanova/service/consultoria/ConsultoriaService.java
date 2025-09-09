@@ -1,5 +1,7 @@
 package com.hps.vilanova.service.consultoria;
 
+import com.hps.vilanova.dto.request.consultoria.ConsultoriaUpdateRequest;
+import com.hps.vilanova.validation.ConsultoriaValidator;
 import com.hps.vilanova.dto.request.consultoria.ConsultoriaRequest;
 import com.hps.vilanova.dto.response.consultoria.ConsultoriaResponse;
 import com.hps.vilanova.mapper.consultoria.ConsultoriaMapper;
@@ -33,14 +35,17 @@ public class ConsultoriaService {
 
     @Transactional
     public void criarConsultoria(@Valid ConsultoriaRequest request) {
+        // Validação específica para criar uma consultoria
+        ConsultoriaValidator.validateForCreate(request);
+
         var paciente = pacienteRepository.findById(request.getPacienteId())
-                .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Paciente não encontrado"));
 
         var usuario = usuarioRepository.findById(request.getUsuarioId())
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Usuário não encontrado"));
 
         var equipe = equipeRepository.findById(request.getEquipeId())
-                .orElseThrow(() -> new RuntimeException("Equipe não encontrada"));
+                .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Equipe não encontrada"));
 
         consultoriaRepository.save(
                 ConsultoriaMapper.toEntity(request, usuario, paciente, equipe)
@@ -76,7 +81,9 @@ public class ConsultoriaService {
     }
 
     @Transactional
-    public void atualizarDadosConsultoria(Long id, ConsultoriaRequest request) {
+    public void atualizarDadosConsultoria(Long id, @Valid ConsultoriaUpdateRequest request) {
+        ConsultoriaValidator.validateForUpdate(request);
+
         var consultoria = consultoriaRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(NOT_FOUND, "Consultoria não encontrada"));
 
@@ -94,6 +101,7 @@ public class ConsultoriaService {
                 .ifPresent(consultoria::setModalidadeVisita);
     }
 
+
     public Page<ConsultoriaResponse> listarConsultoriasBaixadas(Pageable pageable) {
         return consultoriaRepository.findByStatusConsultoriaFalse(pageable)
                 .map(ConsultoriaMapper::toResponse);
@@ -109,7 +117,6 @@ public class ConsultoriaService {
         consultoria.setStatusConsultoria(false);
         consultoria.setHospital(request.getHospital());
     }
-
 
     @Transactional
     public void atualizarModalidadeVisita(Long id, @Valid ConsultoriaRequest request) {
@@ -152,5 +159,4 @@ public class ConsultoriaService {
         consultoria.setStatusBaixa(request.getStatusBaixa());
         consultoria.setSituacoesEspecificas(request.getSituacoesEspecificas());
     }
-
 }
