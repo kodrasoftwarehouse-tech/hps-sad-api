@@ -7,10 +7,13 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
+import static org.springframework.http.HttpStatus.CREATED;
+import static org.springframework.http.HttpStatus.OK;
 
 @RequiredArgsConstructor
 @RestController
@@ -40,43 +43,42 @@ public class ConsultoriaController {
     }
 
     @PutMapping("/status/{id}")
-    public void atualizarStatusSala(@Valid @RequestBody ConsultoriaRequest request, @PathVariable Long id) {
-        consultoriaService.atualizarStatusSala(request, id);
+    public ResponseEntity<ConsultoriaResponse> atualizarStatusSala(@Valid @RequestBody ConsultoriaRequest request, @PathVariable Long id) {
+        return ResponseEntity.status(OK).body(consultoriaService.atualizarStatusSala(request, id));
     }
 
     @PutMapping("/equipe/{id}")
-    public void atualizarEquipe(@Valid @PathVariable Long id, @RequestBody ConsultoriaRequest request) {
-        consultoriaService.atualizarEquipe(id, request);
+    public ResponseEntity<ConsultoriaResponse> atualizarEquipe(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+        return ResponseEntity.status(OK).body(consultoriaService.atualizarEquipe(id, request));
     }
 
     @PutMapping("/{id}")
-    public void atualizarDadosConsultoria(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
-        consultoriaService.atualizarDadosConsultoria(id, request);
+    public ResponseEntity<ConsultoriaResponse> atualizarDadosConsultoria(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+        return ResponseEntity.status(OK).body(consultoriaService.atualizarDadosConsultoria(id, request));
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping()
-    public void criarConsultoria(@Valid @RequestBody ConsultoriaRequest request) {
-        consultoriaService.criarConsultoria(request);
+    public ResponseEntity<ConsultoriaResponse> criarConsultoria(@Valid @RequestBody  ConsultoriaRequest request) {
+        return ResponseEntity.status(CREATED).body(consultoriaService.criarConsultoria(request));
     }
 
     @PutMapping("/{id}/baixa")
-    public void registrarBaixa(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
-        consultoriaService.registrarBaixa(id, request);
+    public ResponseEntity<ConsultoriaResponse> registrarBaixa(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+        return ResponseEntity.status(OK).body(consultoriaService.registrarBaixa(id, request));
     }
 
     @PutMapping("/{id}/situacoes-especificas")
-    public void registrarBaixaComSituacoesEspecificas(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
-        consultoriaService.registrarBaixaComSituacoesEspecificas(id, request);
+    public ResponseEntity<ConsultoriaResponse> registrarBaixaComSituacoesEspecificas(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+        return ResponseEntity.status(OK).body(consultoriaService.registrarBaixaComSituacoesEspecificas(id, request));
     }
 
     @PutMapping("/{id}/hospital-baixa")
-    public void registrarBaixaHospitalar(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
-        consultoriaService.registrarBaixaHospitalar(id, request);
+    public ResponseEntity<ConsultoriaResponse> registrarBaixaHospitalar(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+        return ResponseEntity.status(OK).body(consultoriaService.registrarBaixaHospitalar(id, request));
     }
 
     @PutMapping("/{id}/modalidade-visita")
-    public void atualizarModalidadeVisita(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
-        consultoriaService.atualizarModalidadeVisita(id, request);
+    public ResponseEntity<ConsultoriaResponse> atualizarModalidadeVisita(@PathVariable Long id, @Valid @RequestBody ConsultoriaRequest request) {
+        return ResponseEntity.status(OK).body(consultoriaService.atualizarModalidadeVisita(id, request));
     }
 }

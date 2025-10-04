@@ -16,7 +16,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 public class ConsultoriaRequest {
-    @NotNull
+    @NotNull(message = "Paciente id invalido")
     private Long pacienteId;
     @NotNull
     private Long usuarioId;
