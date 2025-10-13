@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor
@@ -29,5 +30,7 @@ public class Paciente {
     private String cid;
     private String telefone1;
     private String telefone2;
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+    private List<Elegibilidade> elegibilidades;
     private boolean status;
 }
