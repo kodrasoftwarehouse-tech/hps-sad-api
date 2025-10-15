@@ -1,9 +1,11 @@
 package com.hps.vilanova.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Builder
@@ -31,6 +33,7 @@ public class Paciente {
     private String telefone1;
     private String telefone2;
     @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
-    private List<Elegibilidade> elegibilidades;
+    @JsonManagedReference
+    private List<Elegibilidade> elegibilidades = new ArrayList();
     private boolean status;
 }
