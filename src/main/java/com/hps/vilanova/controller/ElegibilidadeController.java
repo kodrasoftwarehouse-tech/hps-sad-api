@@ -1,7 +1,8 @@
 package com.hps.vilanova.controller;
 
+import com.hps.vilanova.dto.elegibilidade.ElegibilidadeResponse;
 import com.hps.vilanova.model.Elegibilidade;
-import com.hps.vilanova.service.ElegibilidadeService;
+import com.hps.vilanova.service.elegibilidade.ElegibilidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +18,7 @@ public class ElegibilidadeController {
     private ElegibilidadeService elegibilidadeService;
 
     @PostMapping
-    public ResponseEntity<Elegibilidade> criarElegibilidade(@RequestBody Elegibilidade elegibilidade){
+    public ResponseEntity<ElegibilidadeResponse> criarElegibilidade(@RequestBody Elegibilidade elegibilidade){
         return ResponseEntity.status(CREATED).body(elegibilidadeService.criarElegibilidade(elegibilidade));
     }
 

@@ -10,10 +10,7 @@ import lombok.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-@JsonIdentityInfo(
-        generator = ObjectIdGenerators.PropertyGenerator.class,
-        property = "id"
-)
+//
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -37,7 +34,9 @@ public class Paciente {
     private String cid;
     private String telefone1;
     private String telefone2;
-    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Elegibilidade> elegibilidades = new ArrayList();
+
+    @OneToMany(mappedBy = "paciente", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Elegibilidade> elegibilidades = new ArrayList<>();
+
     private boolean status;
 }
