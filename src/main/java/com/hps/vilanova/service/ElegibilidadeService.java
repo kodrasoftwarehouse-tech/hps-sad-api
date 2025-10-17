@@ -18,19 +18,20 @@ public class ElegibilidadeService {
     @Autowired
     private PacienteRepository pacienteRepository;
 
-    public Elegibilidade criarElegibilidade(Elegibilidade elegibilidadeRequest){
-        var elegibilidade = new Elegibilidade();
-        var paciente = pacienteRepository.findById(elegibilidadeRequest.getPaciente().getId());
-        if(paciente.isEmpty()){
+    public Elegibilidade criarElegibilidade(Elegibilidade elegibilidadeRequest) {
+
+        var pacienteOpt = pacienteRepository.findById(elegibilidadeRequest.getPaciente().getId());
+
+        if (pacienteOpt.isEmpty()) {
             throw new BadRequestException("Paciente não encontrado");
         }
-
-        elegibilidade.setPaciente(paciente.get());
+        var paciente = pacienteOpt.get();
+        var elegibilidade = new Elegibilidade(elegibilidadeRequest);
+        elegibilidade.setPaciente(paciente);
         elegibilidade.setNivel(elegibilidadeRequest.getNivel());
         elegibilidade.setDataDeCriacao(now());
-
+        paciente.getElegibilidades().add(elegibilidade);
         return elegibilidadeRepository.save(elegibilidade);
-
     }
 
 
