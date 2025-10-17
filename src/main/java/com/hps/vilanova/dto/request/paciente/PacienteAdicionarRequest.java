@@ -1,10 +1,12 @@
 package com.hps.vilanova.dto.request.paciente;
 
+import com.hps.vilanova.dto.elegibilidade.ElegibilidadeRequest;
 import com.hps.vilanova.dto.request.endereco.EnderecoRequest;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Builder
 @NoArgsConstructor
@@ -30,6 +32,8 @@ public class PacienteAdicionarRequest {
 
     @NotNull
     private String telefone2;
+
+    private List<ElegibilidadeRequest> elegibilidades;
 
 
 }
